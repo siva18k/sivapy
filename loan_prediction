@@ -1,0 +1,52 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+customer=pd.read_csv('customers.csv')
+train=pd.read_csv("train.csv")
+customer_org = customer.copy()
+train_org = train.copy()
+#customer.columns
+#train.columns
+#customer.dtypes
+#train.dtypes
+#print ('Customers:',customer.shape)
+#print ('Train:',train.shape)
+#train['Loan_Status'].value_counts()
+#train['Loan_ID'].values[1]
+#for i in range(len(train['Loan_ID'])):
+    #print (train['Loan_ID'].values[i])
+    #if train['Loan_ID'].values[i] == 'LP001008':
+        #print(train['Loan_ID'].values[i])
+""" train['Loan_Status'].value_counts().plot.bar()
+plt.figure(1)
+plt.subplot(221)
+train['Gender'].value_counts(normalize=True).plot.bar(figsize=(5,5), title= 'Gender')
+
+plt.subplot(222)
+train['Married'].value_counts(normalize=True).plot.bar(figsize=(10,10),title= 'Married')
+
+plt.subplot(223)
+train['Dependents'].value_counts(normalize=True).plot.bar(title= 'Dependents')
+
+plt.subplot(224)
+train['Education'].value_counts(normalize=True).plot.bar(title= 'Education')
+
+plt.show()
+# Visualizing remaining categorical features
+plt.figure(1)
+plt.subplot(131)
+train['Self_Employed'].value_counts(normalize=True).plot.bar(figsize=(24,6), title= 'Self_Employed')
+
+plt.subplot(132)
+train['Credit_History'].value_counts(normalize=True).plot.bar(title= 'Credit_History')
+
+plt.subplot(133)
+train['Property_Area'].value_counts(normalize=True).plot.bar(title= 'Property_Area')
+
+plt.show()
+"""
+print(pd.crosstab(train['Gender'],train['Loan_Status']))
+#print(pd.crosstab(train['Gender'],train['Property_Area']))
+Gender=pd.crosstab(train['Gender'],train['Loan_Status'])
+Gender.div(Gender.sum(1)/100,0).plot(kind='bar',stacked='true',figsize=(4,4))
+plt.ylabel('Approval%')
